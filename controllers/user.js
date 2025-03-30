@@ -8,6 +8,8 @@ export const getAuthenticatedUser = async (req, res) => {
   try {
     const user = await userModel.findById(userId);
 
+    user.password = null;
+
     res.status(200).json(user);
   } catch (error) {
     res.status(401).json(error);
@@ -44,12 +46,7 @@ export const Signup = async (req, res) => {
       password: hashPassword,
     });
 
-    // Have to go throuth all these stress in other
-    // to remove the password without setting it to null 😤
-
-    // eslint-disable-next-line no-unused-vars
-    const { password: pass, ...rest } = data._doc;
-    const user = rest;
+    data.password = null;
 
     // create a session for the user
     req.session.userId = user._id;
@@ -83,6 +80,8 @@ export const Login = async (req, res) => {
 
     // fetch another user without the password
     const user = await userModel.findOne({ email }).exec();
+
+    user.password = null;
 
     // create a session for the user
     req.session.userId = user._id;
