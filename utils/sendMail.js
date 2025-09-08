@@ -4,15 +4,16 @@ import { Resend } from "resend";
 config();
 
 const API_KEY = process.env.RESEND_API_KEY;
-console.log(process.env.NODE_ENV);
-
 const resend = new Resend(API_KEY);
+
+const COMPANY_EMAIL =
+  process.env.COMPANY_EMAIL || "Acme <onboarding@resend.dev>";
 
 const sendMail = async (userData) => {
   const { email, subject, html } = userData;
 
   const { data, error } = await resend.emails.send({
-    from: "Acme <onboarding@resend.dev>",
+    from: COMPANY_EMAIL,
     to: [email],
     subject,
     html,

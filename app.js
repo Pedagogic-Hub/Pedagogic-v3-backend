@@ -6,6 +6,7 @@ import MongoStore from "connect-mongo";
 import userRoute from "./routes/user.js";
 import cors from "cors";
 import requestRoute from "./routes/request.js";
+import applyRoute from "./routes/apply.js";
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -58,6 +59,7 @@ app.use(
 // routes
 app.use("/user", userRoute);
 app.use("/request", requestRoute);
+app.use("/apply", applyRoute);
 
 mongoose
   .connect(MONGO_URL)
