@@ -61,6 +61,10 @@ app.use("/user", userRoute);
 app.use("/request", requestRoute);
 app.use("/apply", applyRoute);
 
+app.get("/", (req, res) => {
+  res.json("Welcome to Pedagogic Hub Backend API");
+});
+
 mongoose
   .connect(MONGO_URL)
   .then(() => {
