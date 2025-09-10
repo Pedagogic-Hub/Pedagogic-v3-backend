@@ -18,8 +18,10 @@ const applyEmailTemplate = ({ firstName, course }) => {
         <div style="padding: 30px; color: #333;">
           <h2 style="color: ${primaryColor}; margin-top: 0;">Hi ${firstName},</h2>
           <p style="font-size: 16px; line-height: 1.6;">
-            🎉 Congratulations! You’ve successfully applied for:
-            <strong>${course}</strong>.
+            🎉 Congratulations! You’ve successfully applied for a course or tutor.
+          </p>
+          <p style="font-size: 16px; line-height: 1.6;">
+            Title: <strong>${course}</strong>.
           </p>
           <p style="font-size: 16px; line-height: 1.6;">
             One of our admins will reach out to you shortly with the next steps and further procedures.

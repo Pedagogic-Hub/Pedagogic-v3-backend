@@ -31,6 +31,10 @@ const adminApplyEmailTemplate = ({
           <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
             <tbody>
               <tr>
+                <td style="padding: 8px; border: 1px solid #eee; font-weight: bold;">Title</td>
+                <td style="padding: 8px; border: 1px solid #eee;">${course}</td>
+              </tr>
+              <tr>
                 <td style="padding: 8px; border: 1px solid #eee; font-weight: bold;">Name</td>
                 <td style="padding: 8px; border: 1px solid #eee;">${firstName} ${lastName}</td>
               </tr>

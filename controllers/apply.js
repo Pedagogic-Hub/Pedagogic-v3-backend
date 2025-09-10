@@ -35,7 +35,7 @@ export const createApplication = async (req, res) => {
       res.status(401).json("Something went wrong!");
     }
 
-    const subject = `Your ${course} application was received 🎉`;
+    const subject = `Application Received Successfully 🎉`;
     const html = applyEmailTemplate({ course, firstName });
 
     await sendMail({
@@ -44,7 +44,7 @@ export const createApplication = async (req, res) => {
       html,
     });
 
-    const adminSubject = `New ${course} application`;
+    const adminSubject = `New Student Application`;
     const adminHtml = adminApplyEmailTemplate(req.body);
     const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "";
     await sendMail({
