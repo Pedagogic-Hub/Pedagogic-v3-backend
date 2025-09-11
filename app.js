@@ -15,20 +15,30 @@ const SECRET = process.env.SECRET;
 
 const app = express();
 
+// Trust Cloudflare/Railway proxies
 app.set("trust proxy", 1);
 
-const FRONTEND_URL = (process.env.NODE_ENV = "production"
-  ? "https://pedagogichub.com"
-  : "http://localhost:3000");
+// Define allowed frontend
+const FRONTEND_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://pedagogichub.com"
+    : "http://localhost:3000";
 
+// Apply CORS headers
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", FRONTEND_URL); // Replace with your client's origin
+  res.setHeader("Access-Control-Allow-Origin", FRONTEND_URL);
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, PUT, DELETE, OPTIONS"
-  ); // Specify the allowed HTTP methods
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization"); // Specify the allowed headers
-  res.setHeader("Access-Control-Allow-Credentials", "true"); // Enable credentials (cookies, authorization headers, etc.)
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+
+  // Handle preflight requests quickly
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
   next();
 });
 
