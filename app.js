@@ -21,26 +21,8 @@ app.set("trust proxy", 1);
 // Define allowed frontend
 const FRONTEND_URL =
   process.env.NODE_ENV === "production"
-    ? "https://pedagogichub.com"
+    ? "https://www.pedagogichub.com"
     : "http://localhost:3000";
-
-// Apply CORS headers
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", FRONTEND_URL);
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS"
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-
-  // Handle preflight requests quickly
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-
-  next();
-});
 
 // middlewares
 app.use(
