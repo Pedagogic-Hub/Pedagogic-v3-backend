@@ -15,7 +15,7 @@ const SECRET = process.env.SECRET;
 
 const app = express();
 
-app.enable("trust proxy");
+app.set("trust proxy", 1);
 
 const FRONTEND_URL = (process.env.NODE_ENV = "production"
   ? "https://pedagogichub.com"
