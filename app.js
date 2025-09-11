@@ -15,8 +15,12 @@ const SECRET = process.env.SECRET;
 
 const app = express();
 
+const FRONTEND_URL = (process.env.NODE_ENV = "production"
+  ? "https://pedagogichub.com"
+  : "http://localhost:3000");
+
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000"); // Replace with your client's origin
+  res.setHeader("Access-Control-Allow-Origin", FRONTEND_URL); // Replace with your client's origin
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, PUT, DELETE, OPTIONS"
@@ -29,7 +33,7 @@ app.use((req, res, next) => {
 // middlewares
 app.use(
   cors({
-    origin: ["https://localhost:3000"],
+    origin: [FRONTEND_URL],
     credentials: true,
   })
 );
