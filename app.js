@@ -15,6 +15,8 @@ const SECRET = process.env.SECRET;
 
 const app = express();
 
+app.enable("trust proxy");
+
 const FRONTEND_URL = (process.env.NODE_ENV = "production"
   ? "https://pedagogichub.com"
   : "http://localhost:3000");
